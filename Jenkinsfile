@@ -5,12 +5,12 @@ pipeline {
     
     environment {
         // Update the main app image name to match the deployment file
-        DOCKER_IMAGE_NAME = 'tausif131088/easyshop-app'
-        DOCKER_MIGRATION_IMAGE_NAME = 'tausif131088/easyshop-migration'
+        DOCKER_IMAGE_NAME = 'riviwa6166/easyshop-app'
+        DOCKER_MIGRATION_IMAGE_NAME = 'riviwa6166/easyshop-migration'
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
         GITHUB_CREDENTIALS = credentials('github-credentials')
-        GIT_REPO ="https://github.com/Tausif1310/tws-e-commerce-app.git"
-        GIT_BRANCH = "master"
+        GIT_REPO ="https://github.com/aayushave/devops-ffp.git"
+        GIT_BRANCH = "main"
     }
     
     stages {
