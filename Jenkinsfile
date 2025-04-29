@@ -10,10 +10,20 @@ pipeline {
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
         GITHUB_CREDENTIALS = credentials('github-credentials')
         GIT_REPO ="https://github.com/aayushave/devops-ffp.git"
-        GIT_BRANCH = "main"
+        GIT_BRANCH = "feature-x"
+        // Update the main app image name to match the deployment file
+
     }
     
     stages {
+        stage('Print Branch') {
+            steps {
+                script {
+                    echo "Branch: ${env.GIT_BRANCH}"
+                    echo "Short Branch: ${env.BRANCH_NAME}"
+                }
+            }
+        }
         stage('Cleanup Workspace') {
             steps {
                 script {
