@@ -11,7 +11,7 @@ pipeline {
         GITHUB_CREDENTIALS = credentials('github-credentials')
         GIT_REPO ="https://github.com/aayushave/devops-ffp.git"
         // GIT_BRANCH = "main"
-        GIT_BRANCH = "${env.BRANCH_NAME}"
+        GIT_BRANCH = "${BRANCH_NAME}"
 
     }
     stages {
@@ -25,7 +25,8 @@ pipeline {
 
         stage('Print Branch') {
             steps {
-                bat 'echo Running CI for branch: %CURRENT_BRANCH%'
+                bat 'echo Running CI for branch: %BRANCH_NAME%'
+                bat 'echo Running CI for branch: %GIT_BRANCH%'
                 bat 'set'
             }
         }
