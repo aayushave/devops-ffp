@@ -15,13 +15,13 @@ pipeline {
 
     }
     stages {
-        stage('Cleanup Workspace') {
-            steps {
-                script {
-                    clean_ws()
-                }
-            }
-        }
+        // stage('Cleanup Workspace') {
+        //     steps {
+        //         script {
+        //             clean_ws()
+        //         }
+        //     }
+        // }
 
         stage('Print Branch') {
             steps {
@@ -36,7 +36,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                echo "This step runs only on the main branch."
+                bat "This step runs only on the main branch."
             }
         }
 
@@ -44,13 +44,14 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME.startsWith("release-")) {
-                        echo "Running deployment logic for a release branch: ${env.BRANCH_NAME}"
+                        bat "Running deployment logic for a release branch wo env: ${BRANCH_NAME}"
+                        bat "Running deployment logic for a release branch: ${env.BRANCH_NAME}"
 
                     } else if(env.BRANCH_NAME.startsWith("Feature-")){
-                            echo "Running deployment logic for a Feature branch: ${env.BRANCH_NAME}"
+                            bat "Running deployment logic for a Feature branch: ${BRANCH_NAME}"
                         // Deployment commands here
                     } else {
-                        echo "Skipping deployment for non-release branch"
+                        bat "Skipping deployment for non-release branch"
                     }
                 }
             }
