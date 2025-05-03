@@ -43,7 +43,7 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME.startsWith("release-")) {
                         echo "Running deployment logic for a release branch: ${env.BRANCH_NAME}"
-                        // Deployment commands here
+
                     } else if(env.BRANCH_NAME.startsWith("Feature-")){
                             echo "Running deployment logic for a Feature branch: ${env.BRANCH_NAME}"
                         // Deployment commands here
