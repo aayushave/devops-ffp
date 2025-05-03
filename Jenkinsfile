@@ -10,9 +10,10 @@ pipeline {
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
         GITHUB_CREDENTIALS = credentials('github-credentials')
         GIT_REPO ="https://github.com/aayushave/devops-ffp.git"
-        GIT_BRANCH = "main"
+        // GIT_BRANCH = "main"
+        GIT_BRANCH = "${env.BRANCH_NAME}"
+
     }
-    
     stages {
         stage('Cleanup Workspace') {
             steps {
@@ -21,7 +22,37 @@ pipeline {
                 }
             }
         }
+
+        stage('Print Branch') {
+            steps {
+                echo "Running CI for branch: ${CURRENT_BRANCH}"
+            }
+        }
         
+        stage('Conditional Step') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo "This step runs only on the main branch."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME.startsWith("release-")) {
+                        echo "Running deployment logic for a release branch: ${env.BRANCH_NAME}"
+                        // Deployment commands here
+                    } else if(env.BRANCH_NAME.startsWith("Feature-")){
+                            echo "Running deployment logic for a Feature branch: ${env.BRANCH_NAME}"
+                        // Deployment commands here
+                    } else {
+                        echo "Skipping deployment for non-release branch"
+                    }
+                }
+            }
+        }
         stage('Clone Repository') {
             steps {
                 script {
