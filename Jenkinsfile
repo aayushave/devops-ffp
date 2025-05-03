@@ -36,7 +36,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                bat "This step runs only on the main branch."
+                bat "echo This step runs only on the main branch."
             }
         }
 
@@ -44,14 +44,14 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME.startsWith("release-")) {
-                        bat "Running deployment logic for a release branch wo env: ${BRANCH_NAME}"
-                        bat "Running deployment logic for a release branch: ${env.BRANCH_NAME}"
+                        bat "echo Running deployment logic for a release branch wo env: ${BRANCH_NAME}"
+                        bat "echo Running deployment logic for a release branch: ${env.BRANCH_NAME}"
 
                     } else if(env.BRANCH_NAME.startsWith("Feature-")){
-                            bat "Running deployment logic for a Feature branch: ${BRANCH_NAME}"
+                            bat "echo Running deployment logic for a Feature branch: ${BRANCH_NAME}"
                         // Deployment commands here
                     } else {
-                        bat "Skipping deployment for non-release branch"
+                        bat "echo Skipping deployment for non-release branch"
                     }
                 }
             }
