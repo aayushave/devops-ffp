@@ -69,7 +69,7 @@ pipeline {
                 stage('Build Main App Image') {
                     steps {
                         script {
-                            docker_build(
+                            docker_build_windows(
                                 imageName: env.DOCKER_IMAGE_NAME,
                                 imageTag: env.DOCKER_IMAGE_TAG,
                                 dockerfile: 'Dockerfile',
