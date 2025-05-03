@@ -25,7 +25,8 @@ pipeline {
 
         stage('Print Branch') {
             steps {
-                echo "Running CI for branch: ${CURRENT_BRANCH}"
+                // echo "Running CI for branch: ${CURRENT_BRANCH}"
+                 sh 'printenv'
             }
         }
         
